@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cliente', function(){
 
-    return view('cliente/index');
+Route::prefix('/cliente')->group(function (){
+    Route::get('/','App\Http\Controllers\ClienteController@getCliente');
+    Route::get('/save', 'App\Http\Controllers\ClienteController@save');
 });
