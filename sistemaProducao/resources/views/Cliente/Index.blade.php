@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
-</head>
-<body>
-    <ol>
+@extends('site.layout.app')
+
+@section('nav')
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">nome</th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach($clientes as $c)
-        <li>
-            {{$c->nome}}
-        </li>
+        <tr>
+
+            <th scope="row">{{$c->id}}</th>
+            <th scope="row">{{$c->nome_responsavel}}</th>
+
+        </tr>
         @endforeach
-    </ol>
-</body>
-</html>
+    </tbody>
+</table>
+
+@endsection
