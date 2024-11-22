@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 
 Route::prefix('/cliente')->group(function (){
-    Route::get('/','App\Http\Controllers\ClienteController@getCliente');
-    Route::get('/save', 'App\Http\Controllers\ClienteController@save');
+    Route::get('/','App\Http\Controllers\ClienteController@getCliente')->name('Cliente.inicio');
+    Route::get('/create', 'App\Http\Controllers\ClienteController@createCliente')->name('Cliente.create');
+    Route::post('/save',  'App\Http\Controllers\ClienteController@save')->name('Cliente.save');
+    Route::get('/edit/{id}' ,'App\Http\Controllers\ClienteController@editCliente' )->name('Cliente.update');
 });

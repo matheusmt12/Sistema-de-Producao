@@ -14,11 +14,15 @@ class AbstractRepository{
 
     public function save($request){
         
-        return $this->model->create($request);
+        return $this->model->create($request->all());
     }
 
     public function getAll(){
         return $this->model->all();
+    }
+
+    public function edit($id){
+        return $this->model->find($id);
     }
 
 }

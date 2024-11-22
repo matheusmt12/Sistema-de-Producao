@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Repositories\AbstractRepository;
 use App\Repositories\RepositoryCliente;
-use Illuminate\Cache\Repository;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -29,25 +29,27 @@ class ClienteController extends Controller
     }
 
 
-    public function save(){
+    public function createCliente(){
 
-        $request = ([
-            'nome' => 'pague menos',
-            'cnpj' => '123456789',
-            'rua' => 'Maria Soares',
-            'razao_social' => 'não tem',
-            'ramo_ativo' => 'farmacia',
-            'nome_responsavel' => 'Matheus Souza',
-            'telefone' => '79998421320',
-            'cidade' => 'campo do brito',
-            'num_casa' => 63,
-            'estado' => 'SE'
-        ]);
-
-        $repository = new RepositoryCliente($this->cliente);
-
-        $save = $repository->save($request);
-
-        return view('cliente/Create', compact('save'));
+        return view('cliente/Create');
     }
+
+    public function save(Request $request){
+
+        $repository = new AbstractRepository($this->cliente);
+
+        $repository->save($request);
+        
+        return redirect()->route('Cliente.inicio');
+    }
+
+    public function editCliente($id){
+
+        $repository = new AbstractRepository($this->cliente);
+
+        $cliente = $repository->edit($id);
+        dd($cliente);
+        return view();
+    }
+
 }
