@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Cliente;
 use Illuminate\Database\Eloquent\Model;
 
 class AbstractRepository{
@@ -21,8 +22,19 @@ class AbstractRepository{
         return $this->model->all();
     }
 
-    public function edit($id){
+    public function edit($request){
+        $cliente = $this->model->find($request->input('id'));
+        $cliente->update($request->all());
+    }
+
+    public function get($id){
+
         return $this->model->find($id);
+    }
+
+    public function delete($id){
+        $cliente = $this->model->find($id);
+        $cliente->delete($cliente);
     }
 
 }
