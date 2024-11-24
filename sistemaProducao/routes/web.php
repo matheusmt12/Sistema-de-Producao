@@ -28,3 +28,9 @@ Route::prefix('/cliente')->group(function (){
     Route::post('/destroy' , 'App\Http\Controllers\ClienteController@destroy')->name('Cliente.destroy');
     Route::get('/detalhes/{id}', 'App\Http\Controllers\ClienteController@detalhe')->name(('Cliente.detalhe'));
 });
+
+Route::prefix('/pedido')->group(function(){
+    Route::get('/', 'App\Http\Controllers\PedidoController@index')->name('Pedido.inicio');
+    Route::get('/create', 'App\Http\Controllers\PedidoController@createPedido')->name('Pedido.create');
+    Route::post('/save', 'App\Http\Controllers\PedidoController@save')->name('Pedido.save');
+});
