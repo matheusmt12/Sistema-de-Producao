@@ -75,4 +75,12 @@ class ClienteController extends Controller
 
         return redirect()->route('Cliente.inicio');
     }
+
+    public function detalhe($id){
+
+        $repository = new AbstractRepository($this->cliente);        
+        $cliente = $repository->get($id);   
+        
+        return view('Cliente/detalhes',compact('cliente'));
+    }
 }

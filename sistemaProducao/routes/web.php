@@ -26,4 +26,5 @@ Route::prefix('/cliente')->group(function (){
     Route::post('/update', 'App\Http\Controllers\ClienteController@update')->name('Cliente.update');
     Route::get('/delete/{id}', 'App\Http\Controllers\ClienteController@delete')->name('Clinete.delete');
     Route::post('/destroy' , 'App\Http\Controllers\ClienteController@destroy')->name('Cliente.destroy');
+    Route::get('/detalhes/{id}', 'App\Http\Controllers\ClienteController@detalhe')->name(('Cliente.detalhe'));
 });

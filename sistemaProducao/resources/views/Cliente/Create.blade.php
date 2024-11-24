@@ -8,7 +8,6 @@
     <div class="card-body">
         <form action="{{route ('Cliente.save')}}" method="post">
             @csrf
-            <form>
                 <div class="row">
                     <div class="col">
                         <label for="nomeEmpresa">Nome da Empresa</label>
@@ -71,8 +70,8 @@
                     </div>
                 </div>
                 <!--  -->
+                <button class="btn btn-secondary"><a href="{{route ('Cliente.inicio')}}" style="color: white; text-decoration: none;">Voltar</a></button>
                 <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
         </form>
     </div>
 </div>
