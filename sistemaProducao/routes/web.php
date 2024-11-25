@@ -33,4 +33,5 @@ Route::prefix('/pedido')->group(function(){
     Route::get('/', 'App\Http\Controllers\PedidoController@index')->name('Pedido.inicio');
     Route::get('/create', 'App\Http\Controllers\PedidoController@createPedido')->name('Pedido.create');
     Route::post('/save', 'App\Http\Controllers\PedidoController@save')->name('Pedido.save');
+    Route::get('/detalhes/{id}', 'App\Http\Controllers\PedidoController@detalhes')->name('Pedido.detalhe');
 });

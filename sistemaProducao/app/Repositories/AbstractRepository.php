@@ -41,4 +41,8 @@ class AbstractRepository{
         $cliente->delete($cliente);
     }
 
+    public function byId($id, $modelo){
+        return $this->model->with($modelo)->where('id', $id)->get();
+    }
+
 }

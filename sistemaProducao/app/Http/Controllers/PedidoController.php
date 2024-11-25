@@ -45,4 +45,11 @@ class PedidoController extends Controller
 
         return redirect()->route('Pedido.inicio');
     }
+
+    public function detalhes($id){
+
+        $repository = new PedidoRepository($this->pedido);
+        $pedido = $repository->byId($id, 'cliente');
+        return view('Pedido/detalhe', compact('pedido'));
+    }
 }

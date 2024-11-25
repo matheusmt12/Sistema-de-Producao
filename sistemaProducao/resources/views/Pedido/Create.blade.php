@@ -36,18 +36,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="" class="form-label">Data do pedido</label>
-                        <input type="datetime-local" name="data_pedido" class="form-control">
-                        <small class="form-text text-muted">Informe a data do pedido</small>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-
                         <label for="" class="form-label">Data de entrega</label>
                         <input type="datetime-local" class="form-control" name="data_entrega">
                         <small class="form-text text-muted">Informe a data de entrega</small>
                     </div>
+                </div>
+                <div class="col">
+                    <input type="hidden" value="<?php $date = date_create();
+                                                echo $date->format('Y-m-d H:i:s'); ?>" name="data_pedido">
                 </div>
             </div>
             <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="color: white; text-decoration: none;">Voltar</a></button>
