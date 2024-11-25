@@ -3,5 +3,7 @@
 @section('title', 'Pedidos')
 
 @section('nav')
-<div> {{$pedidos}}</div>
+@foreach($pedidos as $p)
+{{$p}}
+@endforeach
 @endsection

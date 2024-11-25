@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Repositories\AbstractRepository;
-use App\Repositories\RepositoryCliente;
+use App\Repositories\ClienteRepository;
 use Illuminate\Http\Request;
-
-use function Ramsey\Uuid\v1;
 
 class ClienteController extends Controller
 {
@@ -22,9 +20,9 @@ class ClienteController extends Controller
 
     public function getCliente(){
 
-        $repository = new RepositoryCliente($this->cliente);
+        $repository = new ClienteRepository($this->cliente);
 
-        $clientes= $repository->getAll();
+        $clientes = $repository->getAll();
 
         return view('cliente/index', compact('clientes'));
         
@@ -38,7 +36,7 @@ class ClienteController extends Controller
 
     public function save(Request $request){
 
-        $repository = new AbstractRepository($this->cliente);
+        $repository = new ClienteRepository($this->cliente);
 
         $repository->save($request);
         
@@ -47,7 +45,7 @@ class ClienteController extends Controller
 
     public function editCliente($id){
 
-        $repository = new AbstractRepository($this->cliente);
+        $repository = new ClienteRepository($this->cliente);
 
         $cliente = $repository->get($id);
         return view('Cliente/edit',compact('cliente'));
@@ -55,14 +53,14 @@ class ClienteController extends Controller
 
     public function update(Request $request){
 
-        $repository = new AbstractRepository(($this->cliente));
+        $repository = new ClienteRepository(($this->cliente));
         $repository->edit($request);
         return redirect()->route('Cliente.inicio');
     }
 
     public function delete($id){
 
-        $repository = new AbstractRepository($this->cliente);
+        $repository = new ClienteRepository($this->cliente);
         $cliente = $repository->get($id);
 
         return view('Cliente/delete', compact('cliente'));
@@ -70,7 +68,7 @@ class ClienteController extends Controller
 
     public function destroy(Request $request){
         $id = $request->input('id');
-        $repository = new AbstractRepository($this->cliente);
+        $repository = new ClienteRepository($this->cliente);
         $repository->delete($id);
 
         return redirect()->route('Cliente.inicio');
@@ -78,7 +76,7 @@ class ClienteController extends Controller
 
     public function detalhe($id){
 
-        $repository = new AbstractRepository($this->cliente);        
+        $repository = new ClienteRepository($this->cliente);        
         $cliente = $repository->get($id);   
         
         return view('Cliente/detalhes',compact('cliente'));

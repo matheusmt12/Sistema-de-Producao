@@ -18,6 +18,10 @@ class AbstractRepository{
         return $this->model->create($request->all());
     }
 
+    public function all($modelo){
+        return $this->model->with($modelo)->get();
+    }
+
     public function getAll(){
         return $this->model->all();
     }

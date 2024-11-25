@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RepositoryCliente extends AbstractRepository
+class ClienteRepository extends AbstractRepository
 {
 
     protected $model;
