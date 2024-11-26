@@ -1,12 +1,12 @@
 @extends('site.layout.app')
 
-@section('title', 'Detalhe Pedido')
+@section('title', 'Finalizar Pedido')
+
 
 @section('nav')
-
 <div class="card">
     <div class="card-heard">
-        <h3>Pedido</h3>
+        <h3>Finalizar Pedido</h3>
     </div>
     <div class="card-body">
         <div class="row">
@@ -45,7 +45,7 @@
             <div class="form-group col">
                 <label for="" class="form-label">Status do Pedido </label>
                 @if(isset($pedido->data_entrega_efetuada))
-                <label for="" class="form-control">O pedido foi entregue na data "{{date_format(date_create($pedido->data_entrega),'d-m-Y')}}" <i class="bi bi-check-circle-fill" style="color: green;"></i></label>
+                <label for="" class="form-control">Entregue <i class="bi bi-check-circle-fill" style="color: green;"></i></label>
                 @elseif($pedido->data_entrega > date_format(date_create(),'Y-m-d H:i'))
                 <label for="" class="form-control">O pedido ainda não foi entregue <i class="bi bi-truck" style="color: blue;"></i></label>
                 @else
@@ -53,8 +53,16 @@
                 @endif
             </div>
         </div>
-        <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="text-decoration: none; color: white;">Voltar</a></button>
+        <form action="{{route ('Pedido.concluir')}}" method="post">
+            @csrf
+            <input type="hidden" name="id" value="{{$pedido->id}}">
+            <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="text-decoration: none; color: white;">Voltar</a></button>
+            @if(isset($pedido->data_entrega_efetuada))
+            <button type="button" class="btn btn-success"   disabled>Finalizar</button>
+            @else
+            <button type="submit" class="btn btn-success">Finalizar</button>
+            @endif
+        </form>
     </div>
 </div>
-
 @endsection

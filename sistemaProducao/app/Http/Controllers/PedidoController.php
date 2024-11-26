@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enum\TipoPagamento;
 use App\Models\Cliente;
 use App\Models\Pedido;
+use App\Repositories\AbstractRepository;
 use App\Repositories\PedidoRepository;
 use DateTime;
 use Illuminate\Http\Request;
@@ -55,5 +56,20 @@ class PedidoController extends Controller
         $repository = new PedidoRepository($this->pedido);
         $pedido = $repository->byId($id, 'cliente');
         return view('Pedido/detalhe', compact('pedido'));
+    }
+
+    public function finalizar($id){
+        $repository = new PedidoRepository($this->pedido);
+        $pedido = $repository->byId($id,'cliente');
+
+        return view('Pedido/finalizar',compact('pedido'));
+    }
+
+    public function concluirPedido(Request $request){
+
+        $repository = new PedidoRepository($this->pedido);
+        $repository->finalizarPedido($request->input('id'));
+        
+        return redirect()->route('Pedido.inicio');
     }
 }

@@ -35,6 +35,7 @@
                     <th data-bs-toggle="tooltip" title="O Pedido enta atrasado data: {{$p->data_entrega}}" style="padding-left: 30px;"><i class="bi bi-exclamation-triangle-fill" style="color: red;"></i></th>
                     @endif
                     <td><button class="btn btn-info"><a href="pedido/detalhes/{{$p->id}}" style="text-decoration: none; color: white;">Detalhes</a></button></td>
+                    <td><button class="btn btn-success"><a href="pedido/finalizar/{{$p->id}}" style="text-decoration: none; color: white;">Finalizar</a></button></td>
                 </tr>
                 @endforeach
             </tbody>

@@ -42,7 +42,7 @@ class AbstractRepository{
     }
 
     public function byId($id, $modelo){
-        return $this->model->with($modelo)->where('id', $id)->get();
+        return $this->model->with($modelo)->find($id);
     }
 
 }
