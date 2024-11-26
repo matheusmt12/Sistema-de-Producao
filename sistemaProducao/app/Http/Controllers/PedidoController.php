@@ -6,6 +6,7 @@ use App\Enum\TipoPagamento;
 use App\Models\Cliente;
 use App\Models\Pedido;
 use App\Repositories\PedidoRepository;
+use DateTime;
 use Illuminate\Http\Request;
 
 
@@ -23,9 +24,12 @@ class PedidoController extends Controller
     }
 
     public function index(){
-
         $repositoryPedido = new PedidoRepository($this->pedido);
         $pedidos = $repositoryPedido->all('cliente');
+        $dataEntrega = $pedidos[1]->data_entrega;
+        $dataHoje = date_create();
+        $dataHoje = date_format($dataHoje,'Y-m-d H:i');
+        //if(strtotime($dataEntrega) > strtotime( $dataHoje)) dd($pedidos[1]);
         return view('Pedido/index',compact('pedidos'));
     }
 

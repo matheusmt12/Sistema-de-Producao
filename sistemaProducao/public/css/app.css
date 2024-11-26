@@ -1,1 +1,7 @@
+#mostrar {
+    display: none;
+}
 
+#passar_mouse:hover #mostrar {
+    display: block;
+}
