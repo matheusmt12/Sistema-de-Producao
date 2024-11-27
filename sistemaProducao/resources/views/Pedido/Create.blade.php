@@ -44,6 +44,7 @@
                 <div class="col">
                     <input type="hidden" value="<?php $date = date_create();
                                                 echo $date->format('Y-m-d H:i:s'); ?>" name="data_pedido">
+                    <input type="hidden" value="A CAMINHO" name="status">
                 </div>
             </div>
             <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="color: white; text-decoration: none;">Voltar</a></button>

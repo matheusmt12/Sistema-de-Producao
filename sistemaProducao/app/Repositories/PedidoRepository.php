@@ -14,19 +14,26 @@ class PedidoRepository extends AbstractRepository
         $this->model = $model;
     }
 
-    public function finalizarPedido($id)
+    public function finalizarPedido($request)
+    {
+        $pedido = $this->model->find($request->input('id'));
+        if ($request->input('status') == 'ENTREGUE') {
+            # code...
+            $pedido->data_entrega_efetuada = date_create();
+        }
+        $pedido->status = $request->input('status');
+        $pedido->save();
+    }
+
+    public function verificarStatus()
     {
 
-        $pedido = $this->model->find($id);
-        $pedido->data_entrega_efetuada = date_create();
-        $save = [
-            'id' => $pedido->id,
-            'data_entrega' => $pedido->data_entrega,
-            'data_pedido' => $pedido->data_pedido,
-            'data_entrega_efetuada' => $pedido->data_entrega_efetuada,
-            'tipo_pagamento' => $pedido->tipo_pagamento,
-            'id_cliente' => $pedido->id_cliente
-        ];
-        $pedido->update($save);
+        $listaPedido = $this->model->where('status', 'A CAMINHO')
+            ->where('data_entrega', '<', date_create())->get();
+
+        foreach($listaPedido as $p){
+            $p->status = 'ATRASADO';
+            $p->save();
+        }
     }
 }

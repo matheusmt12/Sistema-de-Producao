@@ -44,13 +44,17 @@
             </div>
             <div class="form-group col">
                 <label for="" class="form-label">Status do Pedido </label>
-                @if(isset($pedido->data_entrega_efetuada))
-                <label for="" class="form-control">O pedido foi entregue na data "{{date_format(date_create($pedido->data_entrega),'d-m-Y')}}" <i class="bi bi-check-circle-fill" style="color: green;"></i></label>
-                @elseif($pedido->data_entrega > date_format(date_create(),'Y-m-d H:i'))
-                <label for="" class="form-control">O pedido ainda não foi entregue <i class="bi bi-truck" style="color: blue;"></i></label>
-                @else
-                <label for="" class="form-control">A entrega do pedido está atrasada <i class="bi bi-exclamation-triangle-fill" style="color: red;"></i></label>
-                @endif
+                <label for="" class="form-control">O pedido foi entregue na data "{{date_format(date_create($pedido->data_entrega),'d-m-Y')}}"
+                    @if($pedido->status == 'ENTREGUE')
+                    <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                    @elseif($pedido->status == 'A CAMINHO')
+                    <i class="bi bi-truck" style="color: blue;"></i>
+                    @elseif($pedido->status == 'ATRASADO')
+                    <i class="bi bi-exclamation-triangle-fill" style="color: red;"></i>
+                    @else
+                    <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                    @endif
+                </label>
             </div>
         </div>
         <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="text-decoration: none; color: white;">Voltar</a></button>

@@ -5,17 +5,13 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col">
+            <div>
                 <h3>Clientes</h3>
             </div>
-            <div class="col">
-                <div style="padding-bottom: 10px; padding-left: 10px;">
-                    <button type="button" class="btn btn-primary"><a href="{{route('Cliente.create')}}" style="text-decoration: none; color: white;">Novo cliente</a></button>
-                </div>
+            <div>
+                <button type="button" class="btn btn-primary"><a href="{{route('Cliente.create')}}" style="text-decoration: none; color: white;">Novo cliente</a></button>
             </div>
         </div>
-
-
         <table class="table">
             <thead>
                 <tr>

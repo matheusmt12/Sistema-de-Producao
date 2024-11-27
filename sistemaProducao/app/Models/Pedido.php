@@ -14,7 +14,8 @@ class Pedido extends Model
         'tipo_pagamento',
         'data_entrega',
         'data_entrega_efetuada',
-        'id_cliente'
+        'id_cliente',
+        'status'
     ];
 
     public function cliente(){

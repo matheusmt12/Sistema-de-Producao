@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\StatusPedido;
 use App\Enum\TipoPagamento;
 use App\Models\Cliente;
 use App\Models\Pedido;
@@ -26,6 +27,7 @@ class PedidoController extends Controller
 
     public function index(){
         $repositoryPedido = new PedidoRepository($this->pedido);
+        $repositoryPedido->verificarStatus();
         $pedidos = $repositoryPedido->all('cliente');
         $dataEntrega = $pedidos[1]->data_entrega;
         $dataHoje = date_create();
@@ -44,7 +46,6 @@ class PedidoController extends Controller
     }
 
     public function save (Request $request){
-
         $repository = new PedidoRepository($this->pedido);
         $repository->save($request);
 
@@ -61,14 +62,16 @@ class PedidoController extends Controller
     public function finalizar($id){
         $repository = new PedidoRepository($this->pedido);
         $pedido = $repository->byId($id,'cliente');
+        $status = array_map(fn($stat) => $stat->value, StatusPedido::cases());
 
-        return view('Pedido/finalizar',compact('pedido'));
+        $objPedido = (object)['pedido' => $pedido , 'status' => $status];
+        return view('Pedido/finalizar',compact('objPedido'));
     }
 
     public function concluirPedido(Request $request){
 
         $repository = new PedidoRepository($this->pedido);
-        $repository->finalizarPedido($request->input('id'));
+        $repository->finalizarPedido($request);
         
         return redirect()->route('Pedido.inicio');
     }
