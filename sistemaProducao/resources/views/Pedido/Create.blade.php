@@ -11,7 +11,6 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-
                         <label for="" class="form-label">Cliente</label>
                         <select name="id_cliente" id="" class="form-control">
                             @foreach($dados->clientes as $c)
@@ -39,6 +38,10 @@
                         <label for="" class="form-label">Data de entrega</label>
                         <input type="datetime-local" class="form-control" name="data_entrega">
                         <small class="form-text text-muted">Informe a data de entrega</small>
+                        @error('data_entrega')
+                        <div style="color: red;">{{ $message }}</div>
+                        @enderror
+
                     </div>
                 </div>
                 <div class="col">

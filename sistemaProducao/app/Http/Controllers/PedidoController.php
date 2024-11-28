@@ -46,6 +46,8 @@ class PedidoController extends Controller
     }
 
     public function save (Request $request){
+
+        $request->validate($this->pedido->rules(),$this->pedido->feedback());
         $repository = new PedidoRepository($this->pedido);
         $repository->save($request);
 

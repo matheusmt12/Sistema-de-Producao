@@ -28,8 +28,8 @@
                 <tr>
                     <td>{{$p->id}}</td>
                     <td>{{$p->cliente->nome}}</td>
-                    <td>{{$p->data_pedido}}</td>
-                    <td>{{$p->data_entrega}}</td>
+                    <td>{{date_format(date_create($p->data_pedido),'d-m-Y')}}</td>
+                    <td>{{date_format(date_create($p->data_entrega),'d-m-Y')}}</td>
 
                     @if($p->status == 'ENTREGUE')
                     <th data-bs-toggle="tooltip" title="O pedido já foi entregue" style="padding-left: 30px;"><i class="bi bi-check-circle-fill" style="color: green;"></i></th>
