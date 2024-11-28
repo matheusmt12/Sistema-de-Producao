@@ -12,6 +12,8 @@
                 <button type="button" class="btn btn-primary"><a href="{{route('Cliente.create')}}" style="text-decoration: none; color: white;">Novo cliente</a></button>
             </div>
         </div>
+    </div>
+    <div class="card-body">
         <table class="table">
             <thead>
                 <tr>
@@ -43,6 +45,7 @@
                 @endforeach
             </tbody>
         </table>
+
     </div>
 </div>
 @endsection

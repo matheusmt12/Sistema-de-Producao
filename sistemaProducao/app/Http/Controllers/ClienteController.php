@@ -18,12 +18,11 @@ class ClienteController extends Controller
     }
 
 
-    public function getCliente(){
+    public function index(){
 
         $repository = new ClienteRepository($this->cliente);
 
         $clientes = $repository->getAll();
-
         return view('cliente/index', compact('clientes'));
         
     }
@@ -35,6 +34,8 @@ class ClienteController extends Controller
     }
 
     public function save(Request $request){
+
+        $request->validate($this->cliente->rules(), $this->cliente->feedback());
 
         $repository = new ClienteRepository($this->cliente);
 

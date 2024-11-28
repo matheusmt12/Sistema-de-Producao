@@ -22,6 +22,10 @@ class AbstractRepository{
         return $this->model->with($modelo)->get();
     }
 
+    public function getPaginate($modelo){
+        return $this->model->with($modelo)->paginate(3);
+    }
+
     public function getAll(){
         return $this->model->all();
     }

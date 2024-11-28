@@ -22,7 +22,31 @@ class Cliente extends Model
     ];
 
 
-    public function pedidos(){
-        return $this->hasMany(Pedido::class,'id_cliente');
+    public function rules()
+    {
+        return [
+            'nome' => 'required',
+            'cnpj' => 'required|unique:clientes',
+            'razao_social' => 'required',
+            'ramo_ativo' => 'required',
+            'nome_responsavel' => 'required',
+            'telefone' => 'required',
+            'rua' => 'required',
+            'cidade' => 'required',
+            'num_casa' => 'required',
+            'estado' => 'required'
+        ];
+    }
+
+    public function feedback(){
+        return [
+            'required' => 'O campo :attribute é requerido',
+            'unique' => 'Esse :attribute já esta cadastrado no sistema'
+        ];
+    }
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'id_cliente');
     }
 }
