@@ -23,13 +23,16 @@ class AbstractRepository{
     }
 
     public function getPaginate($modelo){
-        return $this->model->with($modelo)->paginate(3);
+        return $this->model->with($modelo)->paginate(5);
     }
 
     public function getAll(){
         return $this->model->all();
     }
 
+    public function getAllPaginate(){
+        return $this->model->paginate(5);
+    }
     public function edit($request){
         $cliente = $this->model->find($request->input('id'));
         $cliente->update($request->all());

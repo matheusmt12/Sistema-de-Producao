@@ -29,9 +29,10 @@ class PedidoController extends Controller
         $repositoryPedido = new PedidoRepository($this->pedido);
         $repositoryPedido->verificarStatus();
         $pedidos = $repositoryPedido->getPaginate('cliente');
-        $dataHoje = date_create();
-        $dataHoje = date_format($dataHoje,'Y-m-d H:i');
+        // $dataHoje = date_create();
+        // $dataHoje = date_format($dataHoje,'Y-m-d H:i');
         //if(strtotime($dataEntrega) > strtotime( $dataHoje)) dd($pedidos[1]);
+        //dd($pedidos);
         return view('Pedido/index',compact('pedidos'));
     }
 

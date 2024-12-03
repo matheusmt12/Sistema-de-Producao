@@ -22,7 +22,7 @@ class ClienteController extends Controller
 
         $repository = new ClienteRepository($this->cliente);
 
-        $clientes = $repository->getAll();
+        $clientes = $repository->getAllPaginate();
         return view('cliente/index', compact('clientes'));
         
     }

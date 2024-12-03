@@ -8,8 +8,7 @@
         <div class="row">
             <h3>Pedidos</h3>
         </div>
-            <button type="button" class="btn btn-primary"><a href="{{route('Pedido.create')}}" style="text-decoration: none; color: white;">Novo Pedido</a></button>
-        </div>
+        <button type="button" class="btn btn-primary"><a href="{{route('Pedido.create')}}" style="text-decoration: none; color: white;">Novo Pedido</a></button>
     </div>
     <div class="card-body ">
         <table class="table">
@@ -24,28 +23,48 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($pedidos as $p)
                 <tr>
+                    @foreach($pedidos as $p)
                     <td>{{$p->id}}</td>
                     <td>{{$p->cliente->nome}}</td>
                     <td>{{date_format(date_create($p->data_pedido),'d-m-Y')}}</td>
                     <td>{{date_format(date_create($p->data_entrega),'d-m-Y')}}</td>
-
                     @if($p->status == 'ENTREGUE')
-                    <th data-bs-toggle="tooltip" title="O pedido já foi entregue" style="padding-left: 30px;"><i class="bi bi-check-circle-fill" style="color: green;"></i></th>
+                    <td data-bs-toggle="tooltip" title="O pedido já foi entregue" style="padding-left: 30px;"><i class="bi bi-check-circle-fill" style="color: green;"></i></td>
                     @elseif($p->status == 'A CAMINHO')
-                    <th data-bs-toggle="tooltip" title="Para entregar" style="padding-left: 30px;"><i class="bi bi-truck" style="color: blue;"></i></th>
+                    <td data-bs-toggle="tooltip" title="Para entregar" style="padding-left: 30px;"><i class="bi bi-truck" style="color: blue;"></i></td>
                     @elseif($p->status == 'ATRASADO')
-                    <th data-bs-toggle="tooltip" title="O Pedido enta atrasado data: {{$p->data_entrega}}" style="padding-left: 30px;"><i class="bi bi-exclamation-triangle-fill" style="color: red;"></i></th>
+                    <td data-bs-toggle="tooltip" title="O Pedido enta atrasado data: {{$p->data_entrega}}" style="padding-left: 30px;"><i class="bi bi-exclamation-triangle-fill" style="color: red;"></i></td>
                     @else
-                    <th data-bs-toggle="tooltip" title="O Pedido enta atrasado data: {{$p->data_entrega}}" style="padding-left: 30px;"><i class="bi bi-x-circle-fill" style="color: red;"></i></th>
+                    <td data-bs-toggle="tooltip" title="O Pedido enta atrasado data: {{$p->data_entrega}}" style="padding-left: 30px;"><i class="bi bi-x-circle-fill" style="color: red;"></i></td>
                     @endif
                     <td><button class="btn btn-info"><a href="pedido/detalhes/{{$p->id}}" style="text-decoration: none; color: white;">Detalhes</a></button></td>
                     <td><button class="btn btn-primary"><a href="pedido/finalizar/{{$p->id}}" style="text-decoration: none; color: white;">Status</a></button></td>
+                    @endforeach
                 </tr>
-                @endforeach
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if($pedidos->onFirstPage())
+                <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+                @else
+                <li class="page-item"><a class="page-link" href="{{$pedidos->previousPageUrl()}}">Anterior</a></li>
+                @endif
+                @for($page = 1; $page <= $pedidos->lastPage(); $page++)
+                    @if($pedidos->currentPage() == $page)
+                    <li class="page-item disabled"><span class="page-link">{{$page}}</span></li>
+                    @else
+                    <li class="page-item"><a class="page-link" href="{{$pedidos->url($page)}}">{{$page}}</a></li>
+                    @endif
+                    @endfor
+                    @if($pedidos->onLastPage())
+                    <li class="page-item disabled"><span class="page-link">Próximo</span></li>
+                    @else
+                    <li class="page-item"><a class="page-link" href="{{$pedidos->nextPageUrl()}}">Próximo</a></li>
+                    @endif
+            </ul>
+        </nav>
     </div>
 </div>
 @endsection

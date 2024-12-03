@@ -45,7 +45,27 @@
                 @endforeach
             </tbody>
         </table>
-
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if($clientes->onFirstPage())
+                <li class="page-item disabled"><a class="page-link" href="{{$clientes->previousPageUrl()}}">Previous</a></li>
+                @else
+                <li class="page-item"><a class="page-link" href="{{$clientes->previousPageUrl()}}">Previous</a></li>
+                @endif
+                @for($page = 1; $page <= $clientes->lastPage(); $page++)
+                @if($clientes->currentPage() == $page)
+                <li class="page-item disabled"><a class="page-link" href="{{$clientes->url($page)}}">{{$page}}</a></li>
+                @else
+                <li class="page-item "><a class="page-link" href="{{$clientes->url($page)}}">{{$page}}</a></li>
+                @endif
+                @endfor
+                @if($clientes->onLastPage())
+                <li class="page-item disabled"><a class="page-link" href="{{$clientes->nextPageUrl()}}">Next</a></li>
+                @else
+                <li class="page-item"><a class="page-link" href="{{$clientes->nextPageUrl()}}">Next</a></li>
+                @endif
+            </ul>
+        </nav>
     </div>
 </div>
 @endsection

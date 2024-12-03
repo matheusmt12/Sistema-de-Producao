@@ -37,3 +37,10 @@ Route::prefix('/pedido')->group(function(){
     Route::get('/finalizar/{id}', 'App\Http\Controllers\PedidoController@finalizar')->name('Pedido.finalizar');
     Route::post('/concluir','App\Http\Controllers\PedidoController@concluirPedido')->name('Pedido.concluir');
 });
+
+Route::prefix('/produto')->group(function(){
+    Route::get('/', 'App\Http\Controllers\ProdutoController@index')->name('Produto.inicio');
+    Route::get('/create', 'App\Http\Controllers\ProdutoController@create')->name('Produto.create');
+    Route::post('/save', 'App\Http\Controllers\ProdutoController@save')->name('Produto.save');
+
+});
