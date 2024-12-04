@@ -39,4 +39,9 @@ class ProdutoController extends Controller
 
         return redirect()->route('Produto.inicio'); 
     }
+
+    public function addEstoque(Request $request){
+
+        return view('Produto/estoque');
+    }
 }

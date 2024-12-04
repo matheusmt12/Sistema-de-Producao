@@ -19,6 +19,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Estoque</th>
+                    <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,9 @@
                     <td>{{$p->nome}}</td>
                     <td>{{$p->valor}}</td>
                     <td>{{$p->estoque}}</td>
+                    <td>
+                        <button class="btn btn-success"><a href="{{route('Produto.addEstoque')}}" style="text-decoration: none; color: white;">Adiconar Estoque</a></button>
+                    </td>
                 </tr>
                 @endforeach
 

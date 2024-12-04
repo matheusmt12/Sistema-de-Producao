@@ -50,6 +50,43 @@
                     <input type="hidden" value="A CAMINHO" name="status">
                 </div>
             </div>
+            <div class="form-group">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Preco
+                            </th>
+                            <th>
+                                Quantidade
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @error("produto")
+                            <div class="error" style="color: red;">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        @foreach($dados->produtos as $p)
+                        <tr>
+                            <td>{{$p->nome}}</td>
+                            <td>{{$p->valor}}</td>
+                            <td><input type="number" name="produto[{{$p->id}}][quantidade]"></td>
+                            <td><input type="hidden" name="produto[{{$p->id}}][id]" value="{{$p->id}}"></td>
+                            @error("produto.{$p->id}.quantidade")
+                            <div class="error" style="color: red;">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <button class="btn btn-secondary"><a href="{{route ('Pedido.inicio')}}" style="color: white; text-decoration: none;">Voltar</a></button>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>

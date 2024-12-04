@@ -23,8 +23,8 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($pedidos as $p)
                 <tr>
-                    @foreach($pedidos as $p)
                     <td>{{$p->id}}</td>
                     <td>{{$p->cliente->nome}}</td>
                     <td>{{date_format(date_create($p->data_pedido),'d-m-Y')}}</td>
@@ -40,8 +40,9 @@
                     @endif
                     <td><button class="btn btn-info"><a href="pedido/detalhes/{{$p->id}}" style="text-decoration: none; color: white;">Detalhes</a></button></td>
                     <td><button class="btn btn-primary"><a href="pedido/finalizar/{{$p->id}}" style="text-decoration: none; color: white;">Status</a></button></td>
-                    @endforeach
                 </tr>
+                @endforeach
+
             </tbody>
         </table>
         <nav aria-label="Page navigation example">
