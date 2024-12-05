@@ -40,8 +40,22 @@ class ProdutoController extends Controller
         return redirect()->route('Produto.inicio'); 
     }
 
-    public function addEstoque(Request $request){
+    public function addEstoque($id){
 
-        return view('Produto/estoque');
+        $repository = new ProdutoRepository($this->produto);
+        $produto = $repository->get($id);
+        return view('Produto/estoque',compact('produto'));
+    }
+
+
+    public function salvarEstoque (Request $request){
+
+        $request->validate($this->produto->rules());
+
+        $repository = new ProdutoRepository($this->produto);
+
+        $repository->addEstoque($request);
+
+        return redirect()->route('Produto.inicio');
     }
 }

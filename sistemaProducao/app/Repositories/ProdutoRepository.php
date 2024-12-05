@@ -15,20 +15,14 @@ class ProdutoRepository extends AbstractRepository{
         $this->model = $model;
     }
 
-    public function atualizarEstoque($produtos){
-        foreach($produtos as $produtoData){
+    public function addEstoque($request){
 
-            if(isset($produtoData['quantidade']) && $produtoData['id'] > 0){
-                $produto = $this->model->find($produtoData['id']);
-                if ($produto) {
-                    # code...
-                    $produtoNumeric = (integer) $produtoData['quantidade'];
-                    $produto->estoque = $produto->estoque - $produtoNumeric;
+        $produto = $this->model->find($request->input('id'));
 
-                    $produto->save();
-                }
-            }
-    
+        if(isset($produto)){
+            $produto->estoque = $produto->estoque + $request->input('quantidade');
+            $produto->save();
         }
+
     }
 }

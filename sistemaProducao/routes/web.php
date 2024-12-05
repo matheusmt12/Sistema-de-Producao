@@ -42,6 +42,7 @@ Route::prefix('/produto')->group(function(){
     Route::get('/', 'App\Http\Controllers\ProdutoController@index')->name('Produto.inicio');
     Route::get('/create', 'App\Http\Controllers\ProdutoController@create')->name('Produto.create');
     Route::post('/save', 'App\Http\Controllers\ProdutoController@save')->name('Produto.save');
-    Route::get('/addEstoque','App\Http\Controllers\ProdutoController@addEstoque')->name('Produto.addEstoque');
+    Route::get('/addEstoque/{id}','App\Http\Controllers\ProdutoController@addEstoque')->name('Produto.addEstoque');
+    Route::post('/salvarEstoque', 'App\Http\Controllers\ProdutoController@salvarEstoque')->name('Produto.salvarEstoque');
 
 });

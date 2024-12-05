@@ -31,7 +31,7 @@
                     <td>{{$p->valor}}</td>
                     <td>{{$p->estoque}}</td>
                     <td>
-                        <button class="btn btn-success"><a href="{{route('Produto.addEstoque')}}" style="text-decoration: none; color: white;">Adiconar Estoque</a></button>
+                        <button class="btn btn-success"><a href="produto/addEstoque/{{$p->id}}" style="text-decoration: none; color: white;">Adiconar Estoque</a></button>
                     </td>
                 </tr>
                 @endforeach

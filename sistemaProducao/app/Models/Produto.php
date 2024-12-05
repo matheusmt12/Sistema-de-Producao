@@ -9,27 +9,34 @@ class Produto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome','valor', 'estoque'];
+    protected $fillable = ['nome', 'valor', 'estoque'];
 
 
-    public function rules(){
+    public function rules()
+    {
 
         return [
-            'produto.*.quantidade' => [function($attribute,$value,$fail){
-                $produtoId = explode('.', $attribute)[1];
-                $produto = Produto::find($produtoId);
-
-                if ($produto->estoque < $value) {
+            'quantidade' => [function($attribute, $value,$fail){
+                if (!isset($value)) {
                     # code...
-                    return $fail("A quantidade solicitada para o produto '{$produto->nome}' excede o estoque disponível ({$produto->estoque}).");
+                    $fail('É nescessario ter pelo menos 1 para ser acrescentado');
+                    return;
                 }
+                if($value <= 0 )
+                $fail('O valor tem que ser maior que 0');
             }]
         ];
     }
 
-
-    public function produtosPedidos(){
-        return $this->hasMany('id_produto');
+    public function feedback()
+    {
+        [
+            'quantidade.min' => 'É nescessario ter pelo menos 1 para ser acrescentado'
+        ];
     }
 
+    public function produtosPedidos()
+    {
+        return $this->hasMany('id_produto');
+    }
 }
