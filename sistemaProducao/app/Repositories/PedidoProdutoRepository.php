@@ -14,20 +14,4 @@ class PedidoProdutoRepository{
         $this->model = $model;
     }
 
-
-    public function savePedido($produtos, $idPedido){
-
-
-        foreach ($produtos as $produto) {
-            # code...
-            if (isset($produto['quantidade']) && $produto['id'] > 0) {
-                # code...
-                $this->model->create([
-                    'id_pedido' => $idPedido,
-                    'id_produto' => $produto['id']
-                ]);
-            }
-        }
-    }
-
 }

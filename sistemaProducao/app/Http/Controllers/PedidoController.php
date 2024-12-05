@@ -65,19 +65,8 @@ class PedidoController extends Controller
         $request->validate($this->pedido->rules(), $this->pedido->feedback());
 
         $repositoryPedido = new PedidoRepository($this->pedido);
-        $repositoryPedidoProduto = new PedidoProdutoRepository($this->pedidoProduto);
-        $repositoryProduto = new ProdutoRepository($this->produto);
-
-        //salvar o pedido
-        $pedido = $repositoryPedido->save($request);
-
-        //atualizar estoque do produto
         $produtos = $request->input('produto', []);
-        $repositoryProduto->atualizarEstoque($produtos);
-
-        //salvando o pedido do produto
-        $repositoryPedidoProduto->savePedido($produtos, $pedido->id);
-
+        $teste = $repositoryPedido->salvarPedido($request, $produtos);
         return redirect()->route('Pedido.inicio');
     }
 
