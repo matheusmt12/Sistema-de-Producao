@@ -29,7 +29,12 @@
                     <td>{{$p->id}}</td>
                     <td>{{$p->nome}}</td>
                     <td>{{$p->valor}}</td>
+                    @if($p->estoque == 0)
+                    <td>Indisponível</td>
+                    @else
                     <td>{{$p->estoque}}</td>
+
+                    @endif
                     <td>
                         <button class="btn btn-success"><a href="produto/addEstoque/{{$p->id}}" style="text-decoration: none; color: white;">Adiconar Estoque</a></button>
                     </td>

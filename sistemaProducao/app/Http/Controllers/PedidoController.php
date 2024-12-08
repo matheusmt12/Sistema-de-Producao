@@ -74,8 +74,14 @@ class PedidoController extends Controller
     {
 
         $repository = new PedidoRepository($this->pedido);
-        $pedido = $repository->byId($id, 'cliente');
-        return view('Pedido/detalhe', compact('pedido'));
+        $repositoryPedidoProduto = new PedidoProdutoRepository($this->pedidoProduto);
+        $pedidoP = $repositoryPedidoProduto->getPedidosProdutos($id);
+
+        $cliente = $repository->byId($id, 'cliente');
+
+        $obj = (object)['cliente' => $cliente , 'pedidoP' => $pedidoP ];
+
+        return view('Pedido/detalhe', compact('obj'));
     }
 
     public function finalizar($id)

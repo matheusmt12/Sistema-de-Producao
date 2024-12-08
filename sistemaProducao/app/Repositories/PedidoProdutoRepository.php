@@ -13,5 +13,9 @@ class PedidoProdutoRepository{
     {
         $this->model = $model;
     }
+    public function getPedidosProdutos($idPedido){
+
+        return $this->model->with('produto')->where('id_pedido',$idPedido)->get();
+    }
 
 }

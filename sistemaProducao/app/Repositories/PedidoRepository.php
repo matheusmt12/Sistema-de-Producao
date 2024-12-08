@@ -83,7 +83,8 @@ class PedidoRepository extends AbstractRepository
                 # code...
                 PedidoProduto::create([
                     'id_pedido' => $idPedido,
-                    'id_produto' => $produto['id']
+                    'id_produto' => $produto['id'],
+                    'quantidade' => $produto['quantidade']
                 ]);
             }
         }
