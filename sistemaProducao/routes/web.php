@@ -46,3 +46,9 @@ Route::prefix('/produto')->group(function(){
     Route::post('/salvarEstoque', 'App\Http\Controllers\ProdutoController@salvarEstoque')->name('Produto.salvarEstoque');
 
 });
+
+Route::prefix('/fornecedor')->group( function(){
+    Route::get('/','App\Http\Controllers\FornecedorController@index')->name('Fornecedor.inicio');
+    Route::get('/create', 'App\Http\Controllers\FornecedorController@create')->name('Fornecedor.create');
+    Route::post('/save', 'App\Http\Controllers\FornecedorController@save')->name('Fornecedor.save');
+});

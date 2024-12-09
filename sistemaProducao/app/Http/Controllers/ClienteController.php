@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use App\Repositories\AbstractRepository;
 use App\Repositories\ClienteRepository;
 use Illuminate\Http\Request;
 
