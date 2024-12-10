@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group col">
                     <label class="form-label">Data de Entrega</label>
-                    @if(!isset($p->pedido->data_entrega_efetuada))
+                    @if(!isset($obj->cliente->data_entrega_efetuada))
                     <label for="" class="form-control">Ainda não foi entregue</label>
                     @else
                     <label for="" class="form-control">{{date_format(date_create($obj->cliente->data_entrega), 'd-m-Y')}}</label>
