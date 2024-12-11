@@ -34,8 +34,8 @@ class AbstractRepository{
         return $this->model->paginate(5);
     }
     public function edit($request){
-        $cliente = $this->model->find($request->input('id'));
-        $cliente->update($request->all());
+        $modelo = $this->model->find($request->input('id'));
+        $modelo->update($request->all());
     }
 
     public function get($id){

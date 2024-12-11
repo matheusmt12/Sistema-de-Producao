@@ -22,6 +22,7 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Cnpj</th>
                     <th scope="col">Telefone</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,7 @@
                     <td>{{$f->nome_contato}}</td>
                     <td>{{$f->cnpj}}</td>
                     <td>{{$f->telefone}}</td>
+                    <td><button class="btn btn-info"><a href="fornecedor/editar/{{$f->id}}" style="text-decoration: none; color: white;">Editar</a></button></td>
                 </tr>
 
                 @endforeach

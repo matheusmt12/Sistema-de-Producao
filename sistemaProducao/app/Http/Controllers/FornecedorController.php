@@ -38,4 +38,21 @@ class FornecedorController extends Controller
         return redirect()->route('Fornecedor.inicio');
     }
 
+    public function edit(Request $request, $id){
+
+        $repository = new FornecedorRepository($this->fornecedor);
+
+        $fornecedor = $repository->get($id);
+
+        return view('Fornecedor/edit', compact('fornecedor'));
+    }
+
+    public function editSave(Request $request){
+        $repository = new FornecedorRepository($this->fornecedor);
+
+        $repository->edit($request);
+
+        return redirect()->route('Fornecedor.inicio');
+    }
+
 }

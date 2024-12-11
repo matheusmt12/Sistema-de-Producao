@@ -51,4 +51,6 @@ Route::prefix('/fornecedor')->group( function(){
     Route::get('/','App\Http\Controllers\FornecedorController@index')->name('Fornecedor.inicio');
     Route::get('/create', 'App\Http\Controllers\FornecedorController@create')->name('Fornecedor.create');
     Route::post('/save', 'App\Http\Controllers\FornecedorController@save')->name('Fornecedor.save');
+    Route::get('/editar/{id}','App\Http\Controllers\FornecedorController@edit')->name('Fornecedor.editar');
+    Route::post('/saveEdit', 'App\Http\Controllers\FornecedorController@editSave')->name('Fornecedor.editSave');
 });
