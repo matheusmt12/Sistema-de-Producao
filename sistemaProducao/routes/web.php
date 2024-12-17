@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login','App\Http\Controllers\LoginController@login')->name('login');
+Route::post('/loginAcesso','App\Http\Controllers\LoginController@loginAcesso')->name('login.acesso');
+
 
 Route::middleware('autenticacao')->prefix('/cliente')->group(function (){
     Route::get('/','App\Http\Controllers\ClienteController@index')->name('Cliente.inicio');
