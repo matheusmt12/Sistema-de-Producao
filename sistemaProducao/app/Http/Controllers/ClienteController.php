@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\LogAcessoMiddleware;
 use App\Models\Cliente;
 use App\Repositories\ClienteRepository;
 use Illuminate\Http\Request;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\LogAcessoMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('/cliente')->group(function (){
+Route::middleware('autenticacao')->prefix('/cliente')->group(function (){
     Route::get('/','App\Http\Controllers\ClienteController@index')->name('Cliente.inicio');
     Route::get('/create', 'App\Http\Controllers\ClienteController@createCliente')->name('Cliente.create');
     Route::post('/save',  'App\Http\Controllers\ClienteController@save')->name('Cliente.save');
