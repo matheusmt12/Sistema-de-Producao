@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('inicio');
 
 Route::get('/login','App\Http\Controllers\LoginController@login')->name('login');
-Route::post('/loginAcesso','App\Http\Controllers\LoginController@loginAcesso')->name('login.acesso');
+Route::post('/loginAcesso/{error?}','App\Http\Controllers\LoginController@loginAcesso')->name('login.acesso');
+Route::get('/sair','App\Http\Controllers\LoginController@sair')->name('logout');
 
 
 Route::middleware('autenticacao')->prefix('/cliente')->group(function (){
@@ -33,7 +34,7 @@ Route::middleware('autenticacao')->prefix('/cliente')->group(function (){
     Route::get('/detalhes/{id}', 'App\Http\Controllers\ClienteController@detalhe')->name(('Cliente.detalhe'));
 });
 
-Route::prefix('/pedido')->group(function(){
+Route::middleware('autenticacao')->prefix('/pedido')->group(function(){
     Route::get('/', 'App\Http\Controllers\PedidoController@index')->name('Pedido.inicio');
     Route::get('/create', 'App\Http\Controllers\PedidoController@createPedido')->name('Pedido.create');
     Route::post('/save', 'App\Http\Controllers\PedidoController@save')->name('Pedido.save');
@@ -42,7 +43,7 @@ Route::prefix('/pedido')->group(function(){
     Route::post('/concluir','App\Http\Controllers\PedidoController@concluirPedido')->name('Pedido.concluir');
 });
 
-Route::prefix('/produto')->group(function(){
+Route::middleware('autenticacao')->prefix('/produto')->group(function(){
     Route::get('/', 'App\Http\Controllers\ProdutoController@index')->name('Produto.inicio');
     Route::get('/create', 'App\Http\Controllers\ProdutoController@create')->name('Produto.create');
     Route::post('/save', 'App\Http\Controllers\ProdutoController@save')->name('Produto.save');
@@ -51,7 +52,7 @@ Route::prefix('/produto')->group(function(){
 
 });
 
-Route::prefix('/fornecedor')->group( function(){
+Route::middleware('autenticacao')->prefix('/fornecedor')->group( function(){
     Route::get('/','App\Http\Controllers\FornecedorController@index')->name('Fornecedor.inicio');
     Route::get('/create', 'App\Http\Controllers\FornecedorController@create')->name('Fornecedor.create');
     Route::post('/save', 'App\Http\Controllers\FornecedorController@save')->name('Fornecedor.save');

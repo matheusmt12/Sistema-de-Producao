@@ -42,6 +42,7 @@
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{{route('logout')}}">Sair</a>
                     </div>
                 </li>
             </ul>

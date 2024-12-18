@@ -10,6 +10,9 @@
             <h2>Login</h2>
         </div>
         <div class="card-body">
+            @if($error == '1')
+            <div style="color: red; text-align: center;">Senha ou Email invlálido</div>
+            @endif
             <form action="{{route('login.acesso')}}" method="post">
                 @csrf
                 <div class="form-group">
@@ -18,6 +21,7 @@
                     @error('email')
                     <div style="color: red;">{{$message}}</div>
                     @enderror
+
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
@@ -26,6 +30,9 @@
                     <div style="color: red;">$message</div>
                     @enderror
                 </div>
+                @if($error == '2')
+                <div>É necessario realizar o login para ter acesso a essa página </div>
+                @endif
                 <button type="submit" class="btn btn-primary">Entrar</button>
             </form>
         </div>
